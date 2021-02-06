@@ -1,12 +1,13 @@
-﻿using Entitites.Abstract;
+﻿using Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entitites.Concrete
+namespace Entities.Concrete
 {
     public class Car:IEntity
     {
+        
         public int Id { get; set; }
         public int BrandId { get; set; }
         public int ColorId { get; set; }
