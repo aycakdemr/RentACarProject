@@ -10,18 +10,13 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            string islemler = "1. Araba Ekle \n" +
-                "2. Tüm arabaları getir \n" +
-                "3. Seçilen arabayı brand id'ye göre getir \n" +
-                "4. Seçilen arabayı color id'ye göre getir \n" +
-                "5. Brand ekle \n" +
-                "6. Tüm brandleri getir \n" +
-                "7. Seçilen brand'i id'ye göre getir \n" +
-                "8. Seçilen brand'i name'e göre getir \n" +
-                "9. Color ekle \n" +
-                "10. Tüm Colorları getir \n" +
-                "11. Seçilen color'ı id'ye göre getir \n" +
-                "12. Seçilen color'ı name'e göre getir \n";
+            string islemler = "1. Araba İşlemleri \n" +
+                "2. Brand İşlemleri\n" +
+                "3. Color İşlemleri\n" +
+                "4. Birleştirilmiş Tabloyu Getir\n"+
+                "*******************************\n";
+
+                
             
             while (true)
             {   
@@ -29,101 +24,125 @@ namespace ConsoleUI
                 String secim = Console.ReadLine();
                 if (secim.Equals("1"))
                 {
-                    CarManager carManager = new CarManager(new EfCarDal());
-                    carManager.Add(new Car() { ColorId=2,BrandId=3,DailyPrice=150,ModelYear=2000,Description="abcx"}) ;
+                    string islemler2 = "a. Araba Ekleme\n" +
+                        "b. Araba Silme\n" +
+                        "c. Araba Güncelleme\n" +
+                        "d. Tüm Arabaları Getir";
+                    Console.WriteLine(islemler2);
+                    String secim2 = Console.ReadLine();
+                    if (secim2.Equals("a"))
+                    {
+                        CarManager carManager = new CarManager(new EfCarDal());
+                        carManager.Add(new Car() { ColorId = 2, BrandId = 3, DailyPrice = 150, ModelYear = 2000, Description = "abcx" });
+                    }
+                    else if (secim2.Equals("b"))
+                    {
+                        CarManager carManager = new CarManager(new EfCarDal());
+                        carManager.Delete(2);
+                    }
+                    else if (secim2.Equals("c"))
+                    {
+                        CarManager carManager = new CarManager(new EfCarDal());
+                        carManager.Update(1, new Car()
+                        {
+                            Id = 2,
+                            BrandId = 3,
+                            ColorId = 4,
+                            DailyPrice = 150,
+                            ModelYear = 2000,
+                            Description = "honda"
+                        });
+                    }
+                    else if (secim2.Equals("d"))
+                    {
+                        CarManager carManager = new CarManager(new EfCarDal());
+                        foreach (var car in carManager.GetAll())
+                        {
+                            Console.WriteLine(car.Description);
+                        }
+                    }
+
 
                 }
                 else if (secim.Equals("2"))
                 {
-                    CarManager carManager = new CarManager(new EfCarDal());
-                    foreach (var car in carManager.GetAll())
-                    {
-                       Console.WriteLine(car.Description);
-                    }
+                    string islemler3 = "a. Brand Ekleme\n" +
+                        "b. Brand Silme\n" +
+                        "c. Brand Güncelleme\n" +
+                        "d. Tüm Brandleri Getir";
+                    Console.WriteLine(islemler3);
+                    String secim3 = Console.ReadLine();
 
+                    if (secim3.Equals("a"))
+                    {
+                        BrandManager brandManager = new BrandManager(new EfBrandDal());
+                        brandManager.Add(new Brand() { BrandId = 1, BrandName = "xyz" });
+                    }
+                    else if (secim3.Equals("b"))
+                    {
+                        BrandManager brandManager = new BrandManager(new EfBrandDal());
+                        brandManager.Delete(2);
+                    }
+                    else if (secim3.Equals("c"))
+                    {
+                        BrandManager brandManager = new BrandManager(new EfBrandDal());
+                        brandManager.Update(1, new Brand() { BrandId = 3, BrandName = "abc" });
+                    }
+                    else if (secim3.Equals("d"))
+                    {
+                        BrandManager brandManager = new BrandManager(new EfBrandDal());
+                        foreach (var brand in brandManager.GetAll())
+                        {
+                            Console.WriteLine(brand.BrandName);
+                        }
+                    }
                 }
                 else if (secim.Equals("3"))
                 {
-                    CarManager carManager = new CarManager(new EfCarDal());
-                    foreach (var car in carManager.GetCarsByBrandId(2))
+                    string islemler3 = "a. Color Ekleme\n" +
+                        "b. Color Silme\n" +
+                        "c. Color Güncelleme\n" +
+                        "d. Tüm Colorları Getir";
+                    Console.WriteLine(islemler3);
+                    String secim3 = Console.ReadLine();
+
+                    if (secim3.Equals("a"))
                     {
-                        Console.WriteLine(car.Description);
+                        ColorManager colorManager = new ColorManager(new EfColorDal());
+                        colorManager.Add(new Color() { ColorId = 8, ColorName = "eflatun" });
                     }
+                    else if (secim3.Equals("b"))
+                    {
+                        ColorManager colorManager = new ColorManager(new EfColorDal());
+                        colorManager.Delete(3);
+                    }
+                    else if (secim3.Equals("c"))
+                    {
+                        ColorManager colorManager = new ColorManager(new EfColorDal());
+                        colorManager.Update(4, new Color() { ColorId = 1, ColorName = "sarı" });
+                    }
+                    else if (secim3.Equals("d"))
+                    {
+                        ColorManager colorManager = new ColorManager(new EfColorDal());
+                        foreach (var color in colorManager.GetAll())
+                        {
+                            Console.WriteLine(color.ColorName);
+                        }
+                    }
+
+
                 }
                 else if (secim.Equals("4"))
                 {
                     CarManager carManager = new CarManager(new EfCarDal());
-                    foreach (var car in carManager.GetCarsByColorId(2))
+                    foreach (var car in carManager.GetCarDetails())
                     {
-                        Console.WriteLine(car.Description);
+                        Console.WriteLine(car.Description + " --> " + car.ColorName + " --> " + car.BrandName + " --> " + car.DailyPrice);
                     }
                 }
+                
 
-                else if (secim.Equals("5"))
-                {
-                    BrandManager brandManager = new BrandManager(new EfBrandDal());
-                    brandManager.Add(new Brand() {BrandId = 2,BrandName="abc"
-                    }
-                        );
-                }
-                else if (secim.Equals("6"))
-                {
-                    BrandManager brandManager = new BrandManager(new EfBrandDal());
-                    foreach (var brand in brandManager.GetAll())
-                    {
-                        Console.WriteLine(brand.BrandName);
-                    }
-                }
-                else if (secim.Equals("7"))
-                {
-                    BrandManager brandManager = new BrandManager(new EfBrandDal());
-                    foreach (var brand in brandManager.GetBrandsById(2))
-                    {
-                        Console.WriteLine(brand.BrandName);
-                    }
-                }
-                else if (secim.Equals("8"))
-                {
-                    BrandManager brandManager = new BrandManager(new EfBrandDal());
-                    foreach (var brand in brandManager.GetBrandsByName("aa"))
-                    {
-                        Console.WriteLine(brand.BrandName);
-                    }
-                }
-                else if (secim.Equals("9"))
-                {
-                    ColorManager colorManager = new ColorManager(new EfColorDal());
-                    colorManager.Add(new Color() { ColorName = "beyaz",
-                        ColorId=2
-                    }
-                    ) ;
 
-                }
-                else if (secim.Equals("10"))
-                {
-                    ColorManager colorManager = new ColorManager(new EfColorDal());
-                    foreach (var color in colorManager.GetAll())
-                    {
-                        Console.WriteLine(color.ColorName);
-                    }
-                }
-                else if (secim.Equals("11"))
-                {
-                    ColorManager colorManager = new ColorManager(new EfColorDal());
-                    foreach (var color in colorManager.GetColorsById(2))
-                    {
-                        Console.WriteLine(color.ColorName);
-                    }
-
-                }
-                else if (secim.Equals("12"))
-                {
-                    ColorManager colorManager = new ColorManager(new EfColorDal());
-                    foreach (var color in colorManager.GetColorsByName("aa "))
-                    {
-                        Console.WriteLine(color.ColorName);
-                    }
-                }
             }
 
 

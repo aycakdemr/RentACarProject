@@ -21,19 +21,47 @@ namespace Business.Concrete
             Console.WriteLine("eklendi..");
         }
 
+        public void Delete(int id)
+        {
+            foreach (var colorid in _colorDal.GetAll())
+            {
+                if (colorid.ColorId == id)
+                {
+                    _colorDal.Delete(colorid);
+                    Console.WriteLine("silindi");
+
+                }
+            }
+        }
+
         public List<Color> GetAll()
         {
             return _colorDal.GetAll();
         }
 
-        public List<Color> GetColorsById(int id)
-        {
-            return _colorDal.GetAll(p => p.ColorId == id);
-        }
-
+       
         public List<Color> GetColorsByName(string name)
         {
             return _colorDal.GetAll(p => p.ColorName == name);
         }
+        public List<Color> GetById(int id)
+        {
+            return _colorDal.GetAll(p => p.ColorId == id);
+        }
+        public void Update(int id,Color t)
+        {
+            foreach (var _color in _colorDal.GetAll())
+            {
+                if (_color.ColorId == id)
+                {
+                    _color.ColorId = t.ColorId;
+                    _color.ColorName = t.ColorName;
+
+                    Console.WriteLine("güncellendi");
+
+                }
+            }
+        }
+
     }
 }

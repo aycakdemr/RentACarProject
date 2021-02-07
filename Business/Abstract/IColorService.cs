@@ -8,7 +8,6 @@ namespace Business.Abstract
 {
     public interface IColorService :IService<Color>
     {
-        List<Color> GetColorsById(int id);
-        List<Color> GetColorsByName(string name);
+        
     }
 }
