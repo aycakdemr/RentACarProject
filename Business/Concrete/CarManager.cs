@@ -40,7 +40,7 @@ namespace Business.Concrete
 
                 }
             }
-             return new SuccessResult(Messages.error);
+             return new ErrorResult(Messages.error);
         }
 
         public IDataResult<List<Car>> GetAll()
