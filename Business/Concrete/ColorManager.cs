@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -15,40 +17,42 @@ namespace Business.Concrete
         {
             _colorDal = colorDal;
         }
-        public void Add(Color t)
+        public IResult Add(Color t)
         {
             _colorDal.Add(t);
-            Console.WriteLine("eklendi..");
+            return new SuccessResult(Messages.added);
         }
 
-        public void Delete(int id)
+        public IResult Delete(int id)
         {
             foreach (var colorid in _colorDal.GetAll())
             {
                 if (colorid.ColorId == id)
                 {
                     _colorDal.Delete(colorid);
-                    Console.WriteLine("silindi");
+                    return new SuccessResult(Messages.deleted);
 
                 }
+                
             }
+            return new SuccessResult(Messages.error);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>( _colorDal.GetAll(),Messages.succeed);
         }
 
        
-        public List<Color> GetColorsByName(string name)
+        public IDataResult<List<Color>> GetColorsByName(string name)
         {
-            return _colorDal.GetAll(p => p.ColorName == name);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.ColorName == name), Messages.succeed);
         }
-        public List<Color> GetById(int id)
+        public IDataResult<List<Color>> GetById(int id)
         {
-            return _colorDal.GetAll(p => p.ColorId == id);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.ColorId == id), Messages.succeed);
         }
-        public void Update(int id,Color t)
+        public IResult Update(int id,Color t)
         {
             foreach (var _color in _colorDal.GetAll())
             {
@@ -57,11 +61,13 @@ namespace Business.Concrete
                     _color.ColorId = t.ColorId;
                     _color.ColorName = t.ColorName;
 
-                    Console.WriteLine("güncellendi");
+                    return new SuccessResult(Messages.updated);
 
                 }
             }
+            return new SuccessResult(Messages.error);
         }
 
+        
     }
 }

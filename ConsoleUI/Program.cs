@@ -56,7 +56,7 @@ namespace ConsoleUI
                     else if (secim2.Equals("d"))
                     {
                         CarManager carManager = new CarManager(new EfCarDal());
-                        foreach (var car in carManager.GetAll())
+                        foreach (var car in carManager.GetAll().Data)
                         {
                             Console.WriteLine(car.Description);
                         }
@@ -91,7 +91,7 @@ namespace ConsoleUI
                     else if (secim3.Equals("d"))
                     {
                         BrandManager brandManager = new BrandManager(new EfBrandDal());
-                        foreach (var brand in brandManager.GetAll())
+                        foreach (var brand in brandManager.GetAll().Data)
                         {
                             Console.WriteLine(brand.BrandName);
                         }
@@ -124,7 +124,7 @@ namespace ConsoleUI
                     else if (secim3.Equals("d"))
                     {
                         ColorManager colorManager = new ColorManager(new EfColorDal());
-                        foreach (var color in colorManager.GetAll())
+                        foreach (var color in colorManager.GetAll().Data)
                         {
                             Console.WriteLine(color.ColorName);
                         }
@@ -135,7 +135,7 @@ namespace ConsoleUI
                 else if (secim.Equals("4"))
                 {
                     CarManager carManager = new CarManager(new EfCarDal());
-                    foreach (var car in carManager.GetCarDetails())
+                    foreach (var car in carManager.GetCarDetails().Data)
                     {
                         Console.WriteLine(car.Description + " --> " + car.ColorName + " --> " + car.BrandName + " --> " + car.DailyPrice);
                     }

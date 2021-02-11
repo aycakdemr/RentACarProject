@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -15,37 +17,49 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
-        public void Add(Brand t)
+        public IResult Add(Brand t)
         {
             _brandDal.Add(t);
-            Console.WriteLine("eklendi");
+            return new SuccessResult(Messages.added);
         }
 
-        public void Delete(int id)
+        public IResult Delete(int id)
         {
             foreach (var brandid in _brandDal.GetAll())
             {
                 if (brandid.BrandId == id)
                 {
                     _brandDal.Delete(brandid);
-                    Console.WriteLine("silindi");
+                    return new SuccessResult(Messages.deleted);
 
                 }
+
             }
+            return new ErrorResult(Messages.error);
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>( _brandDal.GetAll(),Messages.listed);
         }
 
-        public List<Brand> GetById(int id)
+        public IDataResult<List<Brand>> GetBrandsById(int id)
         {
-            return _brandDal.GetAll(p => p.BrandId == id);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == id), Messages.succeed);
+        }
+
+        public IDataResult<List<Brand>> GetBrandsByName(string name)
+        {
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandName == name), Messages.succeed);
+        }
+
+        public IDataResult<List<Brand>> GetById(int id)
+        {
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == id), Messages.succeed);
         }
 
         
-        public void Update(int id,Brand t)
+        public IResult Update(int id,Brand t)
         {
             foreach (var _brand in _brandDal.GetAll())
             {
@@ -53,11 +67,12 @@ namespace Business.Concrete
                 {
                     _brand.BrandId = t.BrandId;
                     _brand.BrandName = t.BrandName;
-                    
-                    Console.WriteLine("güncellendi");
+
+                    return new SuccessResult(Messages.updated);
 
                 }
             }
+            return new ErrorResult(Messages.error);
         }
     }
 
