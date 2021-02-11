@@ -14,21 +14,21 @@ namespace Core.DataAccess.EntityFramework
         where TContext : DbContext, new()
     {
 
-        public void Add(TEntity color)
+        public void Add(TEntity entity)
         {
             using (TContext c = new TContext())
             {
-                var addedEntity = c.Entry(color);
+                var addedEntity = c.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 c.SaveChanges();
             }
         }
 
-        public void Delete(TEntity color)
+        public void Delete(TEntity entity)
         {
             using (TContext c = new TContext())
             {
-                var deletedEntity = c.Entry(color);
+                var deletedEntity = c.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
                 c.SaveChanges();
             }
