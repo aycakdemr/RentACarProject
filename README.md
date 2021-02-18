@@ -95,7 +95,7 @@
 |Name | Data Type|
 |-----|-----------|
 |Id|int|
-|FirstName|ncahr(100)|
+|FirstName|nchar(100)|
 |LastName|int|
 |EMail|nchar(100)|
 |Password|int|
@@ -105,7 +105,7 @@
 |Name | Data Type|
 |-----|-----------|
 |CarId|int|
-|RentDate|ncahr(100)|
+|RentDate|nchar(100)|
 |CustomerId|int|
 |ReturnDate|nchar(100)|
 
