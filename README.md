@@ -59,7 +59,7 @@
 
 ## Database Tables
 
-![Kitap1 - Excel 18 02 2021 23_15_04](https://user-images.githubusercontent.com/77458312/108416169-63ee4d80-723f-11eb-95ee-14979b824d36.png)
+![Kitap1 - Excel 18 02 2021 23_15_04](https://user-images.githubusercontent.com/77458312/108416501-d4956a00-723f-11eb-9c13-e70aed5cab40.png)
 
 
 <br/>
