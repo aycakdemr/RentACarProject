@@ -59,62 +59,7 @@
 
 ## Database Tables
 
-### Cars
+![Kitap1 - Excel 18 02 2021 23_15_04](https://user-images.githubusercontent.com/77458312/108416169-63ee4d80-723f-11eb-95ee-14979b824d36.png)
 
-|Name | Data Type|
-|-----|-----------|
-|Id|int|
-|BrandId|int|
-|ColorId|int|
-|ModelYear|int|
-|DailyPrice|int|
-|Description|nchar(100)|
-
-### Brands
-
-|Name | Data Type|
-|-----|-----------|
-|BrandId|int|
-|BrandName|nchar(100)|
-
-### Colors
-|Name | Data Type|
-|-----|-----------|
-|ColorId|int|
-|ColorName|nchar(100)|
-
-### Customers
-
-|Name | Data Type|
-|-----|-----------|
-|UserId|int|
-|CompanyName|nchar(100)|
-|CustomerId|int|
-
-### Users
-|Name | Data Type|
-|-----|-----------|
-|Id|int|
-|FirstName|nchar(100)|
-|LastName|int|
-|EMail|nchar(100)|
-|Password|int|
-
-### Rentals
-
-|Name | Data Type|
-|-----|-----------|
-|CarId|int|
-|RentDate|nchar(100)|
-|CustomerId|int|
-|ReturnDate|nchar(100)|
 
 <br/>
-
-### All Of The Project
-
-![ReCapProject - Microsoft Visual Studio 18 02 2021 21_36_02](https://user-images.githubusercontent.com/77458312/108405126-c3ddf780-7231-11eb-8b83-96be31ec72ce.png)
-![ReCapProject - Microsoft Visual Studio 18 02 2021 21_39_55](https://user-images.githubusercontent.com/77458312/108405262-ec65f180-7231-11eb-9763-5d6793c9fede.png)
-![ReCapProject - Microsoft Visual Studio 18 02 2021 21_40_54](https://user-images.githubusercontent.com/77458312/108405333-04d60c00-7232-11eb-8d20-e91584c9a190.png)
-![ReCapProject - Microsoft Visual Studio 18 02 2021 21_41_32](https://user-images.githubusercontent.com/77458312/108405456-259e6180-7232-11eb-9999-989e00b7d866.png)
-![ReCapProject - Microsoft Visual Studio 18 02 2021 21_42_28](https://user-images.githubusercontent.com/77458312/108405552-41a20300-7232-11eb-842c-7a498e037e40.png)
