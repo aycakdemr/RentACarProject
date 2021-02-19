@@ -63,3 +63,5 @@
 
 
 <br/>
+
+**Database tables kodlarına [buradan](tables.sql) ulaşabilirsiniz.**
