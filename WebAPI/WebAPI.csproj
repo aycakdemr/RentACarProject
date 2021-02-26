@@ -15,5 +15,10 @@
     <ProjectReference Include="..\Entitites\Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="bin\Debug\netcoreapp3.1\Images\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 
 </Project>
