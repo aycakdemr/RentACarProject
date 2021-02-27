@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(Brand brand)
         {
-            var result = _brandService.Delete(brand.BrandId);
+            var result = _brandService.Delete(brand.Id);
             if (result.Success)
             {
                 return Ok(result);

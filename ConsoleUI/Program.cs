@@ -48,7 +48,6 @@ namespace ConsoleUI
                         CarManager carManager = new CarManager(new EfCarDal());
                         Console.WriteLine(carManager.Update(1, new Car()
                         {
-                            Id = 2,
                             BrandId = 3,
                             ColorId = 4,
                             DailyPrice = 150,
@@ -79,7 +78,7 @@ namespace ConsoleUI
                     if (secim3.Equals("a"))
                     {
                         BrandManager brandManager = new BrandManager(new EfBrandDal());
-                        Console.WriteLine(brandManager.Add(new Brand() { BrandId = 1, BrandName = "xyz" }).Message);
+                        Console.WriteLine(brandManager.Add(new Brand() { BrandName = "xyz" }).Message);
                     }
                     else if (secim3.Equals("b"))
                     {
@@ -89,7 +88,7 @@ namespace ConsoleUI
                     else if (secim3.Equals("c"))
                     {
                         BrandManager brandManager = new BrandManager(new EfBrandDal());
-                        Console.WriteLine(brandManager.Update(1, new Brand() { BrandId = 3, BrandName = "abc" }).Message);
+                        Console.WriteLine(brandManager.Update(1, new Brand() {  BrandName = "abc" }).Message);
                     }
                     else if (secim3.Equals("d"))
                     {
@@ -112,7 +111,7 @@ namespace ConsoleUI
                     if (secim3.Equals("a"))
                     {
                         ColorManager colorManager = new ColorManager(new EfColorDal());
-                        Console.WriteLine(colorManager.Add(new Color() { ColorId = 8, ColorName = "eflatun" }).Message);
+                        Console.WriteLine(colorManager.Add(new Color() {  ColorName = "eflatun" }).Message);
                     }
                     else if (secim3.Equals("b"))
                     {
@@ -122,7 +121,7 @@ namespace ConsoleUI
                     else if (secim3.Equals("c"))
                     {
                         ColorManager colorManager = new ColorManager(new EfColorDal());
-                        Console.WriteLine(colorManager.Update(4, new Color() { ColorId = 1, ColorName = "sarı" }).Message);
+                        Console.WriteLine(colorManager.Update(4, new Color() {  ColorName = "sarı" }).Message);
                     }
                     else if (secim3.Equals("d"))
                     {
@@ -195,7 +194,7 @@ namespace ConsoleUI
                     if (secim4.Equals("a"))
                     {
                         CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-                        Console.WriteLine(customerManager.Add(new Customer { UserId = 1, CompanyName = "abc" }).Message);
+                        Console.WriteLine(customerManager.Add(new Customer { CompanyName = "abc" }).Message);
                     }
                     else if (secim4.Equals("b"))
                     {

@@ -12,5 +12,7 @@ namespace Business.Constans
         public static string error = "hata";
         public static string listed = "listelendi";
         public static string succeed = "başarılı";
+
+        public static string CarImagesCountExceded= "Daha fazla resim eklenemez.";
     }
 }

@@ -80,7 +80,6 @@ namespace Business.Concrete
             {
                 if (_car.Id == id)
                 {
-                    _car.Id = car.Id;
                     _car.ColorId = car.ColorId;
                     _car.BrandId = car.BrandId;
                     _car.ModelYear = car.ModelYear;

@@ -62,7 +62,6 @@ namespace Business.Concrete
             {
                 if (_rental.Id == id)
                 {
-                    _rental.Id = t.Id;
                     _rental.CarId = t.CarId;
                     _rental.CustomerId = t.CustomerId;
                     _rental.RentDate = t.RentDate;

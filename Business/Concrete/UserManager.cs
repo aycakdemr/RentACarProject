@@ -55,7 +55,6 @@ namespace Business.Concrete
             {
                 if (_user.Id == id)
                 {
-                    _user.Id = t.Id;
                     _user.FirstName = t.FirstName;
                     _user.LastName = t.LastName;
                     _user.Password = t.Password;

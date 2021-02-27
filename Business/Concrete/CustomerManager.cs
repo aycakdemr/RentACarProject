@@ -55,7 +55,6 @@ namespace Business.Concrete
             {
                 if (_customer.UserId == id)
                 {
-                    _customer.UserId = t.UserId;
                     _customer.CompanyName = t.CompanyName;
 
                     return new SuccessResult(Messages.updated);

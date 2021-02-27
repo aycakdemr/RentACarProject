@@ -30,7 +30,7 @@ namespace Business.Concrete
         {
             foreach (var colorid in _colorDal.GetAll())
             {
-                if (colorid.ColorId == id)
+                if (colorid.Id == id)
                 {
                     _colorDal.Delete(colorid);
                     return new SuccessResult(Messages.deleted);
@@ -53,15 +53,14 @@ namespace Business.Concrete
         }
         public IDataResult<List<Color>> GetById(int id)
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.ColorId == id), Messages.succeed);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.Id == id), Messages.succeed);
         }
         public IResult Update(int id,Color t)
         {
             foreach (var _color in _colorDal.GetAll())
             {
-                if (_color.ColorId == id)
+                if (_color.Id == id)
                 {
-                    _color.ColorId = t.ColorId;
                     _color.ColorName = t.ColorName;
 
                     return new SuccessResult(Messages.updated);

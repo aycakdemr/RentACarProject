@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.Entities;
+using DataAccess.Abstract;
 using Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,57 +10,57 @@ using System.Text;
 
 namespace Core.DataAccess.EntityFramework
 {
-    public class EfEntityRepositoryBase<TEntity ,TContext> : IEntityRepository<TEntity>
+    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
-
         public void Add(TEntity entity)
         {
-            using (TContext c = new TContext())
+            using (TContext context = new TContext())
             {
-                var addedEntity = c.Entry(entity);
+                var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
-                c.SaveChanges();
+                context.SaveChanges();
             }
         }
 
         public void Delete(TEntity entity)
         {
-            using (TContext c = new TContext())
+            using (TContext context = new TContext())
             {
-                var deletedEntity = c.Entry(entity);
+                var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
-                c.SaveChanges();
+                context.SaveChanges();
             }
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter = null)
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            using (TContext c = new TContext())
+            using (TContext context = new TContext())
             {
-                return c.Set<TEntity>().SingleOrDefault(filter);
+                return context.Set<TEntity>().FirstOrDefault(filter);
             }
         }
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            using (TContext c = new TContext())
+            using (TContext context = new TContext())
             {
                 return filter == null
-                    ? c.Set<TEntity>().ToList()
-                    : c.Set<TEntity>().Where(filter).ToList();
+                                 ? context.Set<TEntity>().ToList()
+                                 : context.Set<TEntity>().Where(filter).ToList();
             }
         }
 
-        public void Update(TEntity color)
+        public void Update(TEntity entity)
         {
-            using (TContext c = new TContext())
+            using (TContext context = new TContext())
             {
-                var updatedEntity = c.Entry(color);
+                var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
-                c.SaveChanges();
+                context.SaveChanges();
             }
         }
+
     }
 }

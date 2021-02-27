@@ -30,7 +30,7 @@ namespace Business.Concrete
         {
             foreach (var brandid in _brandDal.GetAll())
             {
-                if (brandid.BrandId == id)
+                if (brandid.Id == id)
                 {
                     _brandDal.Delete(brandid);
                     return new SuccessResult(Messages.deleted);
@@ -48,7 +48,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetBrandsById(int id)
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == id), Messages.succeed);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.Id == id), Messages.succeed);
         }
 
         public IDataResult<List<Brand>> GetBrandsByName(string name)
@@ -58,7 +58,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetById(int id)
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == id), Messages.succeed);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.Id == id), Messages.succeed);
         }
 
         
@@ -66,9 +66,8 @@ namespace Business.Concrete
         {
             foreach (var _brand in _brandDal.GetAll())
             {
-                if (_brand.BrandId == id)
+                if (_brand.Id == id)
                 {
-                    _brand.BrandId = t.BrandId;
                     _brand.BrandName = t.BrandName;
 
                     return new SuccessResult(Messages.updated);
