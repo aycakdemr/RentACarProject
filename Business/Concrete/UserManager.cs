@@ -1,10 +1,6 @@
 ﻿using Business.Abstract;
-using Business.Constans;
-using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Results;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
-using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,57 +10,25 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-        public UserManager(IUserDal userdal)
+
+        public UserManager(IUserDal userDal)
         {
-            _userDal = userdal;
-        }
-        [ValidationAspect(typeof(UserValidator))]
-        public IResult Add(User t)
-        {
-            _userDal.Add(t);
-            return new SuccessResult(Messages.added);
+            _userDal = userDal;
         }
 
-        public IResult Delete(int id)
+        public List<OperationClaim> GetClaims(User user)
         {
-            foreach (var userid in _userDal.GetAll())
-            {
-                if (userid.Id == id)
-                {
-                    _userDal.Delete(userid);
-                    return new SuccessResult(Messages.deleted);
-
-                }
-            }
-            return new ErrorResult(Messages.error);
+            return _userDal.GetClaims(user);
         }
 
-        public IDataResult<List<User>> GetAll()
+        public void Add(User user)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.listed);
+            _userDal.Add(user);
         }
 
-        public IDataResult<List<User>> GetById(int id)
+        public User GetByMail(string email)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(p => p.Id == id), Messages.succeed);
-        }
-
-        public IResult Update(int id, User t)
-        {
-            foreach (var _user in _userDal.GetAll())
-            {
-                if (_user.Id == id)
-                {
-                    _user.FirstName = t.FirstName;
-                    _user.LastName = t.LastName;
-                    _user.Password = t.Password;
-                    _user.EMail = t.EMail;
-
-                    return new SuccessResult(Messages.updated);
-
-                }
-            }
-            return new SuccessResult(Messages.error);
+            return _userDal.Get(u => u.Email == email);
         }
     }
 }

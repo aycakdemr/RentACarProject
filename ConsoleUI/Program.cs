@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -142,45 +143,7 @@ namespace ConsoleUI
                         Console.WriteLine(car.Description + " --> " + car.ColorName + " --> " + car.BrandName + " --> " + car.DailyPrice);
                     }
                 }
-                else if (secim.Equals("5"))
-                {
-                    string islemler4 = "a. User Ekleme\n" +
-                        "b. User Silme\n" +
-                        "c. User Güncelleme\n" +
-                        "d. Tüm Userları Getir\n" +
-                        "e. Get by id\n";
-                    Console.WriteLine(islemler4);
-                    String secim4 = Console.ReadLine();
-
-                    if (secim4.Equals("a"))
-                    {
-                        UserManager userManager = new UserManager(new EfUserDal());
-                        Console.WriteLine(userManager.Add(new User { EMail = "user1@gmail.com", FirstName = "ali", LastName = "demir", Password = 153 }).Message);
-                    }
-                    else if (secim4.Equals("b"))
-                    {
-                        UserManager userManager = new UserManager(new EfUserDal());
-                        Console.WriteLine(userManager.Delete(1).Message);
-                    }
-                    else if (secim4.Equals("c"))
-                    {
-                        UserManager userManager = new UserManager(new EfUserDal());
-                        Console.WriteLine(userManager.Update(1, new User { FirstName = "ayça", LastName = "demir", EMail = "user2@gmail.com", Password = 234 }).Message);
-                    }
-                    else if (secim4.Equals("d"))
-                    {
-                        UserManager userManager = new UserManager(new EfUserDal());
-                        foreach (var user in userManager.GetAll().Data)
-                        {
-                            Console.WriteLine(user.FirstName);
-                        }
-                    }
-                    else if (secim4.Equals("e"))
-                    {
-                        UserManager userManager = new UserManager(new EfUserDal());
-                        Console.WriteLine(userManager.GetById(2).Message);
-                    }
-                }
+             
                 else if (secim.Equals("6"))
                 {
                     string islemler6 = "a. Customer Ekleme\n" +
