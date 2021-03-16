@@ -135,14 +135,7 @@ namespace ConsoleUI
 
 
                 }
-                else if (secim.Equals("4"))
-                {
-                    CarManager carManager = new CarManager(new EfCarDal());
-                    foreach (var car in carManager.GetCarDetails().Data)
-                    {
-                        Console.WriteLine(car.Description + " --> " + car.ColorName + " --> " + car.BrandName + " --> " + car.DailyPrice);
-                    }
-                }
+               
              
                 else if (secim.Equals("6"))
                 {
@@ -190,11 +183,7 @@ namespace ConsoleUI
                     Console.WriteLine(islemler7);
                     String secim4 = Console.ReadLine();
 
-                    if (secim4.Equals("a"))
-                    {
-                        RentalManager rentalManager = new RentalManager(new EfRentalDal());
-                        Console.WriteLine(rentalManager.Add(new Rental { RentDate = "10.11.2020" }).Message);
-                    }
+                  
                 }
 
 

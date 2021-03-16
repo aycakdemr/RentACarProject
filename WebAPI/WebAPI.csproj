@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Folder Include="bin\Debug\netcoreapp3.1\Images\" />
-    <Folder Include="Images\carImages\" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 

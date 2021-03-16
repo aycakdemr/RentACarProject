@@ -14,12 +14,12 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarImageController : ControllerBase
+    public class CarImagesController : ControllerBase
     {
 
         ICarImageService _CarImageService;
 
-        public CarImageController(ICarImageService CarImageService)
+        public CarImagesController(ICarImageService CarImageService)
         {
             _CarImageService = CarImageService;
 
@@ -46,11 +46,20 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
-        [HttpPost("add")]
-        public IActionResult Add([FromForm(Name = ("Image"))] IFormFile file, [FromForm] CarImage carImage)
+        [HttpGet("getimagesbyid")]
+        public IActionResult GetImagesById(int carId)
         {
-            var result = _CarImageService.Add(file, carImage);
+            var result = _CarImageService.GetImagesByCarId(carId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("add")]
+        public IActionResult Add([FromForm(Name = ("Image"))] IFormFile file, [FromForm(Name = ("carId"))] int id , [FromForm] CarImage carImage)
+        {
+            var result = _CarImageService.Add(file, carImage,id);
             if (result.Success)
             {
                 return Ok(result);
