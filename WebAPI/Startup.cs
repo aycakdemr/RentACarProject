@@ -1,6 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
 using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Extensions.ServiceCollectionExtensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
@@ -80,7 +81,7 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-           
+            app.ConfigureCustomExceptionMiddleware();
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
             app.UseHttpsRedirection();
 
