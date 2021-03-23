@@ -9,7 +9,7 @@ namespace Business.Abstract
     {
         IResult Add(T t);
         IResult Delete(int id);
-        IResult Update(int id,T t);
+        IResult Update(T t);
         IDataResult<List<T>> GetAll();
         IDataResult<List<T>> GetById(int id);
         

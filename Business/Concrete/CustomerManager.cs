@@ -53,19 +53,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Customer>>(_customerdal.GetAll(p => p.UserId == id), Messages.succeed);
         }
 
-        public IResult Update(int id, Customer t)
+        public IResult Update(Customer customer)
         {
-            foreach (var _customer in _customerdal.GetAll())
-            {
-                if (_customer.UserId == id)
-                {
-                    _customer.CompanyName = t.CompanyName;
-
-                    return new SuccessResult(Messages.updated);
-
-                }
-            }
-            return new SuccessResult(Messages.error);
+            _customerdal.Update(customer);
+            return new SuccessResult();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Business.Abstract
     public interface IRentalService:IService<Rental>
     {
         IDataResult<List<RentalDetailDto>> GetRentalDetails();
+        Boolean IsRentable(Rental rental);
     }
 }

@@ -22,5 +22,7 @@ namespace Business.Constans
         public static string SuccessfulLogin = "başarılı giriş";
         public static string UserAlreadyExists = "kullanıcı zaten var";
         public static string AccessTokenCreated;
+
+        public static string RentalNotAvailable = "Kiralanabilir Değil";
     }
 }

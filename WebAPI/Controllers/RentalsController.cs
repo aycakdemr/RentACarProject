@@ -50,15 +50,32 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        
+
         [HttpPost("add")]
         public IActionResult Add(Rental rental)
         {
+            if (_rentalService.GetAll().Data.Count != 0)
+            {
+                if (_rentalService.IsRentable(rental))
+                {
+                    var result1 = _rentalService.Add(rental);
+                    if (result1.Success)
+                    {
+                        return Ok(result1);
+                    }
+
+                }
+            }
+
             var result = _rentalService.Add(rental);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest();
+
+            
         }
         [HttpPost("delete")]
         public IActionResult Delete(Rental rental)
@@ -71,9 +88,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(int id, Rental rental)
+        public IActionResult Update(Rental rental)
         {
-            var result = _rentalService.Update(id, rental);
+            var result = _rentalService.Update(rental);
             if (result.Success)
             {
                 return Ok(result);

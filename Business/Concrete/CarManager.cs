@@ -25,12 +25,10 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
-        [CacheRemoveAspect("IProductService.Get")]
+       // [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Car car)
         {
-            ValidationTool.Validate(new CarValidator(), car);
             //business code
              _carDal.Add(car);
             return new SuccessResult(Messages.added);
@@ -86,22 +84,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId && c.BrandId==brandId), Messages.succeed);
         }
 
-        public IResult Update(int id,Car car)
+        public IResult Update(Car car)
         {
-            foreach (var _car in _carDal.GetAll())
-            {
-                if (_car.Id == id)
-                {
-                    _car.ColorId = car.ColorId;
-                    _car.BrandId = car.BrandId;
-                    _car.ModelYear = car.ModelYear;
-                    _car.DailyPrice = car.DailyPrice;
-                    _car.Description = car.Description;
-                    return new SuccessResult(Messages.updated);
-
-                }
-            }
-            return new SuccessResult(Messages.error);
+            _carDal.Update(car);
+            return new SuccessResult();
         }
     }
 }

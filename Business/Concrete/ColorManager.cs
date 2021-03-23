@@ -55,21 +55,12 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.Id == id), Messages.succeed);
         }
-        public IResult Update(int id,Color t)
+        public IResult Update(Color color)
         {
-            foreach (var _color in _colorDal.GetAll())
-            {
-                if (_color.Id == id)
-                {
-                    _color.ColorName = t.ColorName;
-
-                    return new SuccessResult(Messages.updated);
-
-                }
-            }
-            return new SuccessResult(Messages.error);
+            _colorDal.Update(color);
+            return new SuccessResult();
         }
 
-        
+
     }
 }

@@ -33,8 +33,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  LastName = usr.LastName,
                                  BrandName = brd.BrandName,
                                  ColorName = clr.ColorName,
-                                 RentDate = rt.RentDate,
-                                 ReturnDate = rt.ReturnDate
+                                 RentDate = rt.RentStartDate,
+                                 ReturnDate = rt.RentEndDate
                              };
                 return result.ToList();
             }

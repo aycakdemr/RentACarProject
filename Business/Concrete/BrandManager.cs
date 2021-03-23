@@ -61,20 +61,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.Id == id), Messages.succeed);
         }
 
-        
-        public IResult Update(int id,Brand t)
+
+        public IResult Update(Brand brand)
         {
-            foreach (var _brand in _brandDal.GetAll())
-            {
-                if (_brand.Id == id)
-                {
-                    _brand.BrandName = t.BrandName;
-
-                    return new SuccessResult(Messages.updated);
-
-                }
-            }
-            return new ErrorResult(Messages.error);
+            _brandDal.Update(brand);
+            return new SuccessResult();
         }
     }
 

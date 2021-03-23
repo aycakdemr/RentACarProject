@@ -70,9 +70,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(int id, Customer customer)
+        public IActionResult Update( Customer customer)
         {
-            var result = _customerService.Update(id, customer);
+            var result = _customerService.Update(customer);
             if (result.Success)
             {
                 return Ok(result);

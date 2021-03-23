@@ -8,6 +8,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -24,13 +25,8 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental t)
         {
-            if(t.ReturnDate != null)
-            {
-                 _rentalDal.Add(t);
-                 return new SuccessResult("kiralandı");
-            }
-            return new SuccessResult("araba kiralamak için önce teslim edilmesi gerekir");
-            
+             _rentalDal.Add(t);
+             return new SuccessResult("kiralandı");
         }
 
         public IResult Delete(int id)
@@ -60,22 +56,21 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.succeed);
         }
-        public IResult Update(int id, Rental t)
+        public IResult Update(Rental rental)
         {
-            foreach (var _rental in _rentalDal.GetAll())
-            {
-                if (_rental.Id == id)
-                {
-                    _rental.CarId = t.CarId;
-                    _rental.CustomerId = t.CustomerId;
-                    _rental.RentDate = t.RentDate;
-                    _rental.ReturnDate = t.ReturnDate;
+            _rentalDal.Update(rental);
+            return new SuccessResult();
+        }
+        public Boolean IsRentable(Rental rental)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId);
 
-                    return new SuccessResult(Messages.updated);
+            if (result.Any(r =>
+                r.RentEndDate >= rental.RentStartDate &&
+                r.RentStartDate <= rental.RentEndDate
+            )) return true;
 
-                }
-            }
-            return new SuccessResult(Messages.error);
+            return false;
         }
     }
 }
