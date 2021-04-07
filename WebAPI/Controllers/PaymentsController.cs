@@ -17,6 +17,16 @@ namespace WebAPI.Controllers
         {
             _paymentService = paymentService;
         }
+        [HttpPost("getall")]
+        public IActionResult GetAll()
+        {
+            var result = _paymentService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpPost("add")]
         public IActionResult Add(Payment payment)
         {
@@ -27,5 +37,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getcardnumber")]
+        public IActionResult GetCardNumber(int id)
+        {
+            var result = _paymentService.GetCardNumber(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

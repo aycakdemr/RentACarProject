@@ -24,7 +24,7 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-
+        [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarValidator))]
        // [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Car car)
@@ -39,14 +39,14 @@ namespace Business.Concrete
         {
             foreach (var carid in _carDal.GetAll())
             {
-                if(carid.Id == id)
+                if (carid.Id == id)
                 {
-                     _carDal.Delete(carid);
+                    _carDal.Delete(carid);
                     return new SuccessResult(Messages.deleted);
 
                 }
             }
-             return new ErrorResult(Messages.error);
+            return new ErrorResult(Messages.error);
         }
 
         public IDataResult<List<Car>> GetAll()

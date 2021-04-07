@@ -50,9 +50,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public IActionResult Delete(Color color)
+        public IActionResult Delete(int id)
         {
-            var result = _colorService.Delete(color.Id);
+            var result = _colorService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);

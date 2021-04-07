@@ -28,16 +28,19 @@ namespace Business.Concrete
 
         public IResult Delete(int id)
         {
-            foreach (var customerid in _customerdal.GetAll())
+
+            foreach (var carid in _customerdal.GetAll())
             {
-                if (customerid.UserId == id)
+                if (carid.CustomerId == id)
                 {
-                    _customerdal.Delete(customerid);
+                    _customerdal.Delete(carid);
                     return new SuccessResult(Messages.deleted);
 
                 }
             }
             return new ErrorResult(Messages.error);
+
+
         }
 
         public IDataResult<List<Customer>> GetAll()

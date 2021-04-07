@@ -28,17 +28,17 @@ namespace Business.Concrete
 
         public IResult Delete(int id)
         {
-            foreach (var colorid in _colorDal.GetAll())
+            foreach (var carid in _colorDal.GetAll())
             {
-                if (colorid.Id == id)
+                if (carid.Id == id)
                 {
-                    _colorDal.Delete(colorid);
+                    _colorDal.Delete(carid);
                     return new SuccessResult(Messages.deleted);
 
                 }
-                
             }
-            return new SuccessResult(Messages.error);
+            return new ErrorResult(Messages.error);
+
         }
 
         public IDataResult<List<Color>> GetAll()

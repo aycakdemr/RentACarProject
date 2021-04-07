@@ -31,16 +31,17 @@ namespace Business.Concrete
 
         public IResult Delete(int id)
         {
-            foreach (var rentalid in _rentalDal.GetAll())
+            foreach (var carid in _rentalDal.GetAll())
             {
-                if (rentalid.Id == id)
+                if (carid.Id == id)
                 {
-                    _rentalDal.Delete(rentalid);
+                    _rentalDal.Delete(carid);
                     return new SuccessResult(Messages.deleted);
 
                 }
             }
             return new ErrorResult(Messages.error);
+
         }
 
         public IDataResult<List<Rental>> GetAll()

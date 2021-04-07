@@ -28,15 +28,14 @@ namespace Business.Concrete
 
         public IResult Delete(int id)
         {
-            foreach (var brandid in _brandDal.GetAll())
+            foreach (var carid in _brandDal.GetAll())
             {
-                if (brandid.Id == id)
+                if (carid.Id == id)
                 {
-                    _brandDal.Delete(brandid);
+                    _brandDal.Delete(carid);
                     return new SuccessResult(Messages.deleted);
 
                 }
-
             }
             return new ErrorResult(Messages.error);
         }
