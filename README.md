@@ -5,8 +5,7 @@
 
 ## Getting Started
 
-Çok katlı mimari örneği olan bu proje başlıca Business,DataAccess,Core,Entities ve WebAPI katmanlarından oluşmaktadır.Henüz tamamlanmış olmayıp geliştirme aşamasındadır.
-
+Çok katlı mimari örneği olan bu proje başlıca Business,DataAccess,Core,Entities ve WebAPI katmanlarından oluşmaktadır.
 ## Packages
 
 ### Business
