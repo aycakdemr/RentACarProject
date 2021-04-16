@@ -83,4 +83,13 @@
 
 
 
+## Database Tables
+
+![Kitap1 - Excel 16 04 2021 21_14_47](https://user-images.githubusercontent.com/77458312/115067197-3baa6480-9ef9-11eb-9298-0485b6d6ce19.png)
+
+
+
+<br/>
+
+**T_SQL kodlarına [buradan](tables.sql) ulaşabilirsiniz.**
 
